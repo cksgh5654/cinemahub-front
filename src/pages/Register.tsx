@@ -1,13 +1,13 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from "react";
 import {
   getFetchGoogleData,
   getFetchNaverData,
   getFetchNicknameCheck,
   getFetchUserData,
-} from '../apis/login';
-import { useNavigate, useSearchParams } from 'react-router';
-import useLoginStore from '../store/useStore';
-import bgMovies from '../images/bg-image.jpg';
+} from "../apis/login";
+import { useNavigate, useSearchParams } from "react-router";
+import useLoginStore from "../store/useStore";
+import bgMovies from "../assets/images/bg-image.jpg";
 
 type UserInfoType = {
   email: string;
@@ -16,9 +16,9 @@ type UserInfoType = {
 };
 
 const defaultUserInfo = {
-  email: '',
-  nickname: '',
-  profile: '',
+  email: "",
+  nickname: "",
+  profile: "",
 };
 
 const Register = () => {
@@ -26,7 +26,7 @@ const Register = () => {
   const login = useLoginStore((state) => state.login);
 
   const [searchparam, _] = useSearchParams();
-  const social = searchparam.get('social') || null;
+  const social = searchparam.get("social") || null;
 
   const [userInfo, setUserInfo] = useState<UserInfoType>(defaultUserInfo);
   const [agree, setAgree] = useState<boolean>(false);
@@ -73,7 +73,7 @@ const Register = () => {
 
   const handleUniqueNickName = async (name: string) => {
     if (!name) {
-      alert('닉네임을 입력해주세요.');
+      alert("닉네임을 입력해주세요.");
       return;
     }
 
@@ -87,13 +87,13 @@ const Register = () => {
   };
 
   const handleRegisterUser = async () => {
-    if (Object.values(userInfo).includes('')) {
-      alert('소셜 계정 정보를 불러올 수 없습니다. 다시 로그인을 진행해주세요.');
+    if (Object.values(userInfo).includes("")) {
+      alert("소셜 계정 정보를 불러올 수 없습니다. 다시 로그인을 진행해주세요.");
       return;
     }
 
     if (!agree) {
-      alert('이용약관 및 개인정보이용방침에 동의해주세요.');
+      alert("이용약관 및 개인정보이용방침에 동의해주세요.");
       return;
     }
 
@@ -112,10 +112,10 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (social === '1') handleGetGoogleDataFetch();
-    if (social === '2') handleGetNaverDataFetch();
-    if (social === null && (social !== '1' || social !== '2')) {
-      navigator('/login', { replace: true });
+    if (social === "1") handleGetGoogleDataFetch();
+    if (social === "2") handleGetNaverDataFetch();
+    if (social === null && (social !== "1" || social !== "2")) {
+      navigator("/login", { replace: true });
     }
   }, []);
 
@@ -170,14 +170,14 @@ const Register = () => {
             >
               <span
                 className="text-blue-500"
-                onClick={() => window.open('/policy', '_blank')}
+                onClick={() => window.open("/policy", "_blank")}
               >
                 이용약관
-              </span>{' '}
-              과{' '}
+              </span>{" "}
+              과{" "}
               <span
                 className="text-blue-500"
-                onClick={() => window.open('/policy', '_blank')}
+                onClick={() => window.open("/policy", "_blank")}
               >
                 개인정보처리방침
               </span>
@@ -187,7 +187,7 @@ const Register = () => {
 
           <button
             className="w-full p-3 bg-white border border-slate-300 rounded-[10px]"
-            onClick={() => navigator('/login', { replace: true })}
+            onClick={() => navigator("/login", { replace: true })}
           >
             취소
           </button>
