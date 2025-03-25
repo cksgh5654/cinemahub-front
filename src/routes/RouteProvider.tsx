@@ -20,6 +20,13 @@ const RouteProvider = () => {
   const login = useLoginStore((state) => state.login);
   const logout = useLoginStore((state) => state.logout);
 
+  useEffect(() => {
+    if (window.location.pathname === "/callback") {
+      console.log("Redirect detected, refreshing to apply new cookie");
+      window.location.reload();
+    }
+  }, []);
+
   const handleUserSession = async () => {
     try {
       const response = await getFetchUserSession();
