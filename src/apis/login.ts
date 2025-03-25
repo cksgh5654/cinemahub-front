@@ -9,7 +9,9 @@ type UserInfoType = {
 
 export const getFetchGoogleData = async () => {
   try {
-    const response = await baseInstance.get("/login/google/google-get-data");
+    const response = await baseInstance.get("/login/google/google-get-data", {
+      withCredentials: true,
+    });
 
     if (response.data.isError) {
       throw new Error(response.data.message);
