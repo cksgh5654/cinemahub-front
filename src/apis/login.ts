@@ -9,9 +9,7 @@ type UserInfoType = {
 
 export const getFetchGoogleData = async () => {
   try {
-    const response = await baseInstance.get("/login/google/google-get-data", {
-      withCredentials: true,
-    });
+    const response = await baseInstance.get("/login/google/google-get-data");
 
     if (response.data.isError) {
       throw new Error(response.data.message);
@@ -97,6 +95,7 @@ export const getFetchNicknameCheck = async (nickname: string) => {
 
 export const getFetchUserSession = async () => {
   try {
+    console.log("Current cookies:", document.cookie);
     const response = await baseInstance.get("/login/check-login", {
       withCredentials: true,
     });
@@ -104,6 +103,7 @@ export const getFetchUserSession = async () => {
     if (response.data.isError) {
       throw new Error(response.data.message);
     }
+    console.log("Session response:", response.data);
     return response.data;
   } catch (err) {
     if (err instanceof AxiosError && err.response) {
