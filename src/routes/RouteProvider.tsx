@@ -21,10 +21,22 @@ const RouteProvider = () => {
   const logout = useLoginStore((state) => state.logout);
 
   useEffect(() => {
-    if (window.location.pathname === "/callback") {
-      console.log("Redirect detected, refreshing to apply new cookie");
-      window.location.reload();
-    }
+    const checkSession = async () => {
+      if (window.location.pathname === "/callback") {
+        // 리다이렉트 후 경로
+        console.log("Redirect detected, checking session");
+        try {
+          const response = await getFetchUserSession();
+          if (!response.result) {
+            console.log("No session, refreshing...");
+            window.location.reload();
+          }
+        } catch (err) {
+          console.error("Session check failed:", err);
+        }
+      }
+    };
+    checkSession();
   }, []);
 
   const handleUserSession = async () => {
