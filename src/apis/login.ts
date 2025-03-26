@@ -95,11 +95,9 @@ export const getFetchNicknameCheck = async (nickname: string) => {
 
 export const getFetchUserSession = async () => {
   try {
-    console.log("Sending request to /check-login with credentials");
     const response = await baseInstance.get("/login/check-login", {
       withCredentials: true,
     });
-    console.log("Session response:", response.data);
     if (response.data.isError) {
       throw new Error(response.data.message);
     }

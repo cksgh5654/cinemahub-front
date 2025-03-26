@@ -20,25 +20,6 @@ const RouteProvider = () => {
   const login = useLoginStore((state) => state.login);
   const logout = useLoginStore((state) => state.logout);
 
-  useEffect(() => {
-    const checkSession = async () => {
-      if (window.location.pathname === "/callback") {
-        // 리다이렉트 후 경로
-        console.log("Redirect detected, checking session");
-        try {
-          const response = await getFetchUserSession();
-          if (!response.result) {
-            console.log("No session, refreshing...");
-            window.location.reload();
-          }
-        } catch (err) {
-          console.error("Session check failed:", err);
-        }
-      }
-    };
-    checkSession();
-  }, []);
-
   const handleUserSession = async () => {
     try {
       const response = await getFetchUserSession();
