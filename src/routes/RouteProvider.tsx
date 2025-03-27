@@ -29,7 +29,9 @@ const RouteProvider = () => {
       } else {
         logout();
       }
-    } catch (e) {}
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const router = createBrowserRouter([
