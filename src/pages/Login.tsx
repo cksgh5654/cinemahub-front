@@ -3,6 +3,7 @@ import GoogleIcon from "../icons/GoogleIcon";
 import NaverIcon from "../icons/NaverIcon";
 import bgMovies from "../assets/images/bg-image.jpg";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { baseInstance } from "../apis/axios.config";
 
 const Login = () => {
   const [searchParams, _] = useSearchParams();
@@ -24,6 +25,16 @@ const Login = () => {
       return;
     }
   }, []);
+
+  const code = searchParams.get("code");
+  useEffect(() => {
+    if (code) {
+      baseInstance.get(`/login/google-oauth-redirect?code=${code}`).then(() => {
+        navigator("/", { replace: true });
+        console.log("로그인 성공");
+      });
+    }
+  }, [code]);
 
   return (
     <>
