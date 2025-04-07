@@ -4,6 +4,7 @@ import NaverIcon from "../icons/NaverIcon";
 import bgMovies from "../assets/images/bg-image.jpg";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { baseInstance } from "../apis/axios.config";
+import axios from "axios";
 
 const Login = () => {
   const [searchParams, _] = useSearchParams();
@@ -29,9 +30,9 @@ const Login = () => {
   const code = searchParams.get("code");
   useEffect(() => {
     if (code) {
-      baseInstance
+      axios
         .get(
-          `https://app.chanhoportfolio.com/login/google-oauth-redirect?code=${code}`
+          `https://app.chanhoportfolio.com/api/login/google-oauth-redirect?code=${code}`
         )
         .then(() => {
           navigator("/", { replace: true });
