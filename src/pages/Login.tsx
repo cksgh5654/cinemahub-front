@@ -30,7 +30,7 @@ const Login = () => {
   const url =
     import.meta.env.MODE === "development"
       ? ""
-      : "https://app.chanhoportfolio.com";
+      : "https://app.chanhoportfolio.com/api";
 
   useEffect(() => {
     if (code) {
