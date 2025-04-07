@@ -29,10 +29,14 @@ const Login = () => {
   const code = searchParams.get("code");
   useEffect(() => {
     if (code) {
-      baseInstance.get(`/login/google-oauth-redirect?code=${code}`).then(() => {
-        navigator("/", { replace: true });
-        console.log("로그인 성공");
-      });
+      baseInstance
+        .get(
+          `https://app.chanhoportfolio.com/login/google-oauth-redirect?code=${code}`
+        )
+        .then(() => {
+          navigator("/", { replace: true });
+          console.log("로그인 성공");
+        });
     }
   }, [code]);
 
