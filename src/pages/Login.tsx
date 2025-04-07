@@ -4,6 +4,7 @@ import NaverIcon from "../icons/NaverIcon";
 import bgMovies from "../assets/images/bg-image.jpg";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { baseInstance } from "../apis/axios.config";
 
 const Login = () => {
   const [searchParams, _] = useSearchParams();
@@ -27,12 +28,15 @@ const Login = () => {
   }, []);
 
   const code = searchParams.get("code");
+  const url =
+    import.meta.env.MODE === "development"
+      ? ""
+      : "https://app.chanhoportfolio.com";
+
   useEffect(() => {
     if (code) {
-      axios
-        .get(
-          `https://app.chanhoportfolio.com/api/login/google-oauth-redirect?code=${code}`
-        )
+      baseInstance
+        .get(`${url}/login/google/google-oauth-redirect?code=${code}`)
         .then(() => {
           navigator("/", { replace: true });
           console.log("로그인 성공");
