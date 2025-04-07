@@ -3,7 +3,6 @@ import GoogleIcon from "../icons/GoogleIcon";
 import NaverIcon from "../icons/NaverIcon";
 import bgMovies from "../assets/images/bg-image.jpg";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { baseInstance } from "../apis/axios.config";
 import axios from "axios";
 
 const Login = () => {
