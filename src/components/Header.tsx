@@ -37,7 +37,7 @@ const Header = () => {
   const urlKeyword = searchParams.get("keyword") ?? "";
   const urlCategory = searchParams.get("category") ?? "";
   const debounceKeyword = UseDebounce(keyword, 700);
-  const [isAdmin, setIsAdmin] = useState(false); // 관리자인지 확인
+  const [isAdmin, setIsAdmin] = useState(false);
   const [category, setCategory] = useState<string>(
     urlCategory === "person" ? "person" : "movie"
   );
