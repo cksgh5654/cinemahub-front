@@ -1,13 +1,11 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import ListIcon from '../../icons/ListIcon';
-import { useCommentContext } from './comment';
-import Modal from '@ui/Modal';
-import CloseIcon from '../../icons/CloseIcon';
-import Textarea from '../Textarea';
-import Button from '../Button';
-import { deleteReviewFetch, RegisterReportFetch } from '../../apis/review';
-import ModalBackdrop from '@ui/Modal/ModalBackdrop';
-
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import ListIcon from "../../icons/ListIcon";
+import { useCommentContext } from "./comment";
+import CloseIcon from "../../icons/CloseIcon";
+import Textarea from "../Textarea";
+import Button from "../Button";
+import { deleteReviewFetch, RegisterReportFetch } from "../../apis/review";
+import { Modal } from "parkchanho-react-ui-kit";
 interface ListBarComponentProps {
   handleEdit: (edit: boolean) => void;
 }
@@ -18,7 +16,7 @@ const ListBarComponent = (props: ListBarComponentProps) => {
   const { comment, setComments, setReviewInfo } = useCommentContext();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [reason, setReason] = useState<string>('');
+  const [reason, setReason] = useState<string>("");
   const portalRef = useRef(null);
   const listRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -100,7 +98,7 @@ const ListBarComponent = (props: ListBarComponentProps) => {
         } else {
           return {
             reviewLength: length - 1,
-            reviewScore: '0',
+            reviewScore: "0",
           };
         }
       });
@@ -129,11 +127,11 @@ const ListBarComponent = (props: ListBarComponentProps) => {
     }
 
     if (isOpen) {
-      window.addEventListener('click', handleOutSideClick);
+      window.addEventListener("click", handleOutSideClick);
     }
 
     return () => {
-      window.removeEventListener('click', handleOutSideClick);
+      window.removeEventListener("click", handleOutSideClick);
     };
   }, [isOpen, listRef, contentRef]);
   return (
@@ -144,7 +142,7 @@ const ListBarComponent = (props: ListBarComponentProps) => {
         onOpenModal={handleModalOpen}
         portalref={portalRef.current}
       >
-        <ModalBackdrop className="bg-black/70" />
+        <Modal.Backdrop className="bg-black/70" />
 
         <Modal.Content className="z-4 bg-[#FDFDFD] shadow-2xl p-15" fixed>
           <Modal.Close>
@@ -180,7 +178,7 @@ const ListBarComponent = (props: ListBarComponentProps) => {
                     <div className="w-6 h-6 border-2 border-gray-300 border-t-red-500 rounded-full animate-spin"></div>
                   </div>
                 ) : (
-                  '등록하기'
+                  "등록하기"
                 )}
               </Button>
             </div>

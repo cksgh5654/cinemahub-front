@@ -1,12 +1,10 @@
 import { FC, useEffect, useRef, useState } from "react";
-import Pagination from "@ui/Pagination";
-import Modal from "@ui/Modal";
 import XIcon from "../icons/XIcon";
 import { personCredits, personDetail, personImages } from "../apis/person";
 import MovieCard from "../components/mainpage/MovieCard";
-import { Helmet } from "react-helmet-async";
 import defaultImage from "../assets/images/defaultImage.jpg";
 import FavoritesBtn from "../components/mainpage/FavoritesBtn";
+import { Modal, Pagination } from "parkchanho-react-ui-kit";
 
 interface PersonDetailPageProps {
   personId: string;
@@ -132,13 +130,13 @@ const PersonDetailPage: FC<PersonDetailPageProps> = ({ personId }) => {
   return (
     <>
       {personDetails && (
-        <Helmet>
+        <>
           <title>{`${personDetails.name} | CinemaHub`}</title>
           <meta
             name="description"
             content={`${personDetails.name}의 인물 상세정보 페이지입니다.`}
           />
-        </Helmet>
+        </>
       )}
       <main
         ref={portalref}

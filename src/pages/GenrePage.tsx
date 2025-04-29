@@ -3,16 +3,15 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { genreMovies } from "../apis/movie";
 import MovieCard from "../components/mainpage/MovieCard";
-import ModalPage from "@ui/ModalPage";
 import { useModalOpenStore } from "../store/useModalOpenStore";
 import CinemaDetailPage from "./CinemaDetailPage";
 import PersonDetailPage from "./PersonDetailPage";
 import useGenreMovieStore from "../store/useGenreMovieStore";
 import useInfinite from "../hooks/useInfinite";
-import CarouselXscroll from "@ui/CarouselXscroll";
 import Button from "../components/Button";
 import ChevronIcon from "../icons/ChevronIcon";
-import Select from "@ui/Select";
+import ModalPage from "../components/PageModal";
+import { CarouselXscroll, Select } from "parkchanho-react-ui-kit";
 
 type SelectedItem = {
   label: ReactNode;
@@ -123,7 +122,7 @@ const GenrePage = () => {
 
   return (
     <>
-      <main className="flex flex-col gap-16">
+      <main className="flex flex-col gap-8">
         <section className="pt-8">
           <div className="px-8">
             <h3 ref={baseRef} className="pb-2 font-medium text-xl">
@@ -180,24 +179,25 @@ const GenrePage = () => {
             </CarouselXscroll.Navigator>
           </CarouselXscroll>
         </section>
+        <section className="flex justify-between px-8 py-4 sticky top-[65px] bg-white z-10 border-b border-gray-300">
+          <h3 className="font-medium text-xl">{`${currentGenre} (${totalMovies})`}</h3>
+          <Select
+            onChange={handleChangeValue}
+            value={sortBy}
+            item={selectedItem}
+            setItem={setSelectedItem}
+            selectId="sortBy"
+            className="flex items-center"
+          >
+            <Select.Trigger />
+            <Select.Content className="bg-white p-3 border border-gray-300 rounded-md shadow-md translate-y-2">
+              <Select.Item value={"popularity"}>인기순</Select.Item>
+              <Select.Item value={"latest"}>최신순</Select.Item>
+              <Select.Item value={"title"}>이름순</Select.Item>
+            </Select.Content>
+          </Select>
+        </section>
         <section>
-          <div className="flex justify-between px-8">
-            <h3 className="pb-2 font-medium text-xl">{`${currentGenre} (${totalMovies})`}</h3>
-            <Select
-              onChange={handleChangeValue}
-              value={sortBy}
-              item={selectedItem}
-              setItem={setSelectedItem}
-              position="bottom-left"
-            >
-              <Select.Trigger />
-              <Select.Content className="bg-white p-3 border border-gray-300 rounded-md shadow-md">
-                <Select.Item value={"popularity"}>인기순</Select.Item>
-                <Select.Item value={"latest"}>최신순</Select.Item>
-                <Select.Item value={"title"}>이름순</Select.Item>
-              </Select.Content>
-            </Select>
-          </div>
           <div className="grid grid-cols-[repeat(auto-fill,_minmax(260px,1fr))] gap-4 px-8 pb-16">
             {movies.map((movie) => {
               if (!movie.movieId) return null;

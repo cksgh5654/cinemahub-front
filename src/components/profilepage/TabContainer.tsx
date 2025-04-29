@@ -1,20 +1,19 @@
-import Tabs from '@ui/Tabs';
-import MovieCard from '../mainpage/MovieCard';
-import { FC, useEffect, useRef, useState } from 'react';
-import PersonCard from '../mainpage/PersonCard';
-import CinemaDetailPage from '../../pages/CinemaDetailPage';
-import PersonDetailPage from '../../pages/PersonDetailPage';
-import Pagination from '@ui/Pagination';
-import { useModalOpenStore } from '../../store/useModalOpenStore';
-import ModalPage from '@ui/ModalPage';
-import { UserProfile } from '../../store/useProfileStore';
+import MovieCard from "../mainpage/MovieCard";
+import { FC, useEffect, useRef, useState } from "react";
+import PersonCard from "../mainpage/PersonCard";
+import CinemaDetailPage from "../../pages/CinemaDetailPage";
+import PersonDetailPage from "../../pages/PersonDetailPage";
+import { useModalOpenStore } from "../../store/useModalOpenStore";
+import { UserProfile } from "../../store/useProfileStore";
 import {
   getFavoriteMoviesAPI,
   getFavoritePersonsAPI,
-} from '../../apis/favorite';
-import { getUserReviewsAPI } from '../../apis/profile';
-import { CommentType } from '../../pages/CinemaReviewPage';
-import Comments from '../reviewpage/comment';
+} from "../../apis/favorite";
+import { getUserReviewsAPI } from "../../apis/profile";
+import { CommentType } from "../../pages/CinemaReviewPage";
+import Comments from "../reviewpage/comment";
+import { Pagination, Tabs } from "parkchanho-react-ui-kit";
+import ModalPage from "../PageModal";
 
 interface TabContainerProps {
   profile: UserProfile;
@@ -96,7 +95,7 @@ const TabContainer: FC<TabContainerProps> = ({ profile }) => {
       setTotalReviews(response.total);
       setComments(response.data);
     } catch (error) {
-      console.error('리뷰 데이터를 가져오는 데 실패했습니다.', error);
+      console.error("리뷰 데이터를 가져오는 데 실패했습니다.", error);
     }
   };
 
@@ -135,8 +134,8 @@ const TabContainer: FC<TabContainerProps> = ({ profile }) => {
             index={1}
             className={`w-full flex-1 py-2 text-center border-b-2 transition cursor-pointer ${
               activeTab === 1
-                ? 'border-[#FF0000] text-[#FF0000] font-bold'
-                : 'border-gray-300'
+                ? "border-[#FF0000] text-[#FF0000] font-bold"
+                : "border-gray-300"
             }`}
           >
             좋아하는 영화
@@ -145,8 +144,8 @@ const TabContainer: FC<TabContainerProps> = ({ profile }) => {
             index={2}
             className={`w-full flex-1 py-2 text-center border-b-2 transition cursor-pointer ${
               activeTab === 2
-                ? 'border-[#FF0000] text-[#FF0000] font-bold'
-                : 'border-gray-300'
+                ? "border-[#FF0000] text-[#FF0000] font-bold"
+                : "border-gray-300"
             }`}
           >
             좋아하는 영화인
@@ -155,8 +154,8 @@ const TabContainer: FC<TabContainerProps> = ({ profile }) => {
             index={3}
             className={`w-full flex-1 py-2 text-center border-b-2 transition cursor-pointer ${
               activeTab === 3
-                ? 'border-[#FF0000] text-[#FF0000] font-bold'
-                : 'border-gray-300'
+                ? "border-[#FF0000] text-[#FF0000] font-bold"
+                : "border-gray-300"
             }`}
           >
             리뷰 내역

@@ -1,19 +1,17 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { useTrendingMoviesStore } from "../store/useTrendingMovieStore";
 import { movieDetail, movieImages, moviePosters } from "../apis/movie";
-import Pagination from "@ui/Pagination";
-import Modal from "@ui/Modal";
 import XIcon from "../icons/XIcon";
 import MuteIcon from "../icons/MuteIcon";
 import UnMuteIcon from "../icons/UnMuteIcon";
 import { useNavigate } from "react-router-dom";
 import { genres } from "@consts/genres";
-import { Helmet } from "react-helmet-async";
 import { useModalOpenStore } from "../store/useModalOpenStore";
 import defaultImage from "../assets/images/defaultImage.jpg";
 import FavoritesBtn from "../components/mainpage/FavoritesBtn";
 import StarYellowIcon from "../icons/StarYellowIcon";
 import { reviewScore } from "../apis/review";
+import { Modal, Pagination } from "parkchanho-react-ui-kit";
 interface CinemaDetailPageProps {
   movieId: string;
 }
@@ -172,13 +170,13 @@ const CinemaDetailPage: FC<CinemaDetailPageProps> = ({ movieId }) => {
   return (
     <>
       {movie && (
-        <Helmet>
+        <>
           <title>{`${movie.title} | CinemaHub`}</title>
           <meta
             name="description"
             content={movie.tagline || movie.overview || "설명이 없습니다."}
           />
-        </Helmet>
+        </>
       )}
       <main
         ref={portalref}

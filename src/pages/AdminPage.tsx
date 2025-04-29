@@ -1,4 +1,3 @@
-import Tabs from "@ui/Tabs";
 import { useEffect, useState } from "react";
 import Table from "../components/adminpage/Table";
 import Button from "../components/Button";
@@ -10,7 +9,7 @@ import {
   updateReview,
   updateUser,
 } from "../apis/admin";
-import Pagination from "@ui/Pagination";
+import { Pagination, Tabs } from "parkchanho-react-ui-kit";
 
 interface UserProps {
   _id: string;

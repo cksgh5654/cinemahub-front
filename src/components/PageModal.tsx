@@ -1,7 +1,7 @@
-import Modal from '@ui/Modal';
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import XIcon from '../../../icons/XIcon';
+import { Modal } from "parkchanho-react-ui-kit";
+import { FC, ReactNode, useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import XIcon from "../icons/XIcon";
 
 interface ModalPageProps {
   pageParams: string;
@@ -45,17 +45,17 @@ const ModalPage: FC<ModalPageProps> = (props) => {
   };
 
   useEffect(() => {
-    const rootElement = document.getElementById('root');
+    const rootElement = document.getElementById("root");
 
     if (rootElement) {
       if (isPageOpen) {
         setScrollY(window.scrollY);
         rootElement.style.top = `-${scrollY}px`;
-        rootElement.style.position = 'fixed';
+        rootElement.style.position = "fixed";
         window.scrollTo(0, 0);
       } else {
-        rootElement.style.position = '';
-        rootElement.style.top = '';
+        rootElement.style.position = "";
+        rootElement.style.top = "";
         window.scrollTo(0, scrollY);
       }
     }

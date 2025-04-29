@@ -22,7 +22,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
-      "@ui/*": ["./src/components/ui-kit/*"],
       "@consts/*": ["./src/consts/*"]
     }
   },

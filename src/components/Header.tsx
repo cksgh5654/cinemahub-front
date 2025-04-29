@@ -5,11 +5,11 @@ import { ReactNode, useEffect, useState } from "react";
 import defaultProfile from "/images/user_icon.png";
 import { useForm } from "react-hook-form";
 import UseDebounce from "../hooks/useDebounce";
-import Select from "@ui/Select";
 import LogoIcon from "../icons/LogoIcon";
 import XIcon from "../icons/XIcon";
 import { getLoggedInUserInfo } from "../apis/profile";
 import useProfileStore from "../store/useProfileStore";
+import { Select } from "parkchanho-react-ui-kit";
 
 type SelectedItem = {
   label: ReactNode;
@@ -118,40 +118,41 @@ const Header = () => {
               <LogoIcon className="h-5 hover:cursor-pointer" />
             </button>
           </div>
-          <form
-            onSubmit={handleSubmit(onValid)}
-            className="relative flex items-center w-full border border-gray-300 rounded-lg overflow-hidden h-[45px]"
-          >
+          <div className="flex items-center w-full border border-gray-300 rounded-md">
             <Select
               value={category}
               onChange={setCategory}
               item={selectedItem}
               setItem={setSelectedItem}
-              className="z-100 p-1 border-r border-gray-300 hover:cursor-pointer sticky"
-              fixed
+              selectId="category"
             >
-              <Select.Trigger className="w-full px-3 py-1 text-gray-700 hover:text-gray-950 focus:ring-2 focus:outline-none cursor-pointer" />
-              <Select.Content className="p-3 mt-2 bg-white border border-gray-300 rounded-md z-100 cursor-pointer">
-                <Select.Item className="pb-1" value="movie">
-                  영화
-                </Select.Item>
-                <Select.Item value="person">영화인</Select.Item>
+              <Select.Trigger className="px-3 cursor-pointer text-nowrap border-r border-gray-200" />
+              <Select.Content className="p-3 bg-white rounded-lg border border-gray-300 translate-y-4">
+                <div className="flex flex-col gap-2">
+                  <Select.Item value="movie">영화</Select.Item>
+                  <Select.Item value="person">영화인</Select.Item>
+                </div>
               </Select.Content>
             </Select>
-            <input
-              {...register("keyword", { required: true, minLength: 2 })}
-              className="flex-1 px-3 py-1 outline-none"
-              placeholder="검색어를 입력하세요"
-            />
-            {keyword && (
-              <button
-                onClick={() => setValue("keyword", "")}
-                className="hover:cursor-pointer"
-              >
-                <XIcon fill="#555" className="w-3 mr-3" />
-              </button>
-            )}
-          </form>
+            <form
+              onSubmit={handleSubmit(onValid)}
+              className="relative flex items-center w-full rounded-lg overflow-hidden h-[45px]"
+            >
+              <input
+                {...register("keyword", { required: true, minLength: 2 })}
+                className="flex-1 px-3 py-1 outline-none"
+                placeholder="검색어를 입력하세요"
+              />
+              {keyword && (
+                <button
+                  onClick={() => setValue("keyword", "")}
+                  className="hover:cursor-pointer"
+                >
+                  <XIcon fill="#555" className="w-3 mr-3" />
+                </button>
+              )}
+            </form>
+          </div>
           <div className="flex gap-4 text-sm text-gray-500">
             {IsLogin ? (
               <>

@@ -110,7 +110,7 @@ const MainCard: FC<MovieProps> = ({
       </div>
 
       <div
-        className="absolute inset-y-0 left-0 w-[80vw] rounded-l-3xl bg-black/50 backdrop-blur-[20px]"
+        className="absolute inset-y-0 left-0 w-full rounded-l-3xl bg-black/50 backdrop-blur-[20px]"
         style={{
           WebkitMaskImage: "linear-gradient(to right, black, transparent)",
           maskImage: "linear-gradient(to right, black, transparent)",
@@ -180,7 +180,7 @@ const MainCard: FC<MovieProps> = ({
           onClick={() => {
             navigate(`?movie=${movieId}`), setIsMuted(true);
           }}
-          className="py-[1vw] text-[1.5vw] bg-red-500/80 rounded-lg hover:bg-red-500 backdrop-blur-xs transition ease-in-out"
+          className="py-[1vw] text-[1.5vw] bg-red-500/80 rounded-[1vw] hover:bg-red-500 backdrop-blur-xs transition ease-in-out"
         >
           자세히 보기
         </button>

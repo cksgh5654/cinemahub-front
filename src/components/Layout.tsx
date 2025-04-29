@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import { seoConfig } from "@consts/seoConfig";
@@ -13,12 +12,12 @@ const Layout = () => {
   const seo = getSeoData(location.pathname);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen ">
       {seo && (
-        <Helmet>
+        <>
           <title>{seo.title}</title>
           <meta name="description" content={seo.description} />
-        </Helmet>
+        </>
       )}
       <Header />
       <div className="flex-1">

@@ -1,5 +1,3 @@
-import CarouselXscroll from "@ui/CarouselXscroll";
-import CarouselInfinite from "@ui/CarouselInfinite";
 import { useEffect, useRef, useState } from "react";
 import ChevronIcon from "../icons/ChevronIcon";
 import MainCard from "../components/mainpage/MainCard";
@@ -12,10 +10,11 @@ import CinemaDetailPage from "./CinemaDetailPage";
 import PersonDetailPage from "./PersonDetailPage";
 import { useTrendingMoviesStore } from "../store/useTrendingMovieStore";
 import { useModalOpenStore } from "../store/useModalOpenStore";
-import ModalPage from "@ui/ModalPage";
 import MovieCard from "../components/mainpage/MovieCard";
 import { useNavigate } from "react-router-dom";
 import useSearchStore from "../store/useSearchStore";
+import ModalPage from "../components/PageModal";
+import { CarouselInfinite, CarouselXscroll } from "parkchanho-react-ui-kit";
 
 interface PopularActors {
   personId: string;
@@ -113,7 +112,7 @@ const MainPage = () => {
   return (
     <>
       <main>
-        <CarouselInfinite className="relative px-16 pt-8">
+        <CarouselInfinite className="relative pt-8">
           <CarouselInfinite.ItemContainer>
             <CarouselInfinite.ItemList>
               {isLoading ? (
@@ -122,7 +121,7 @@ const MainPage = () => {
                 trendingDayMovies.map((movie, index) => {
                   return (
                     <CarouselInfinite.Item
-                      className="px-4"
+                      className="px-4 w-[90%]"
                       index={index}
                       key={`main-day-${movie.movieId}`}
                     >
@@ -149,40 +148,38 @@ const MainPage = () => {
             </CarouselInfinite.ItemList>
           </CarouselInfinite.ItemContainer>
           <CarouselInfinite.Navigator className=" absolute right-[calc(2vw+80px)] bottom-[2vw] flex items-center">
-            {(
-              handlePrev,
-              handleNext,
-              displayIndex,
-              itemLength,
-              isTransitioning
-            ) => (
-              <>
+            {(handlePrev, handleNext, isTransitioning) => (
+              <div className="flex justify-center items-center gap-4">
                 <button
                   className="bg-[rgba(0,0,0,0.5)] rounded-full opacity-50 hover:opacity-100 duration-300 ease-in-out b backdrop-blur-sm"
                   onClick={handlePrev}
                   disabled={isTransitioning}
                 >
-                  <ChevronIcon height="40px" color="#fff" thickness="3" />
+                  <ChevronIcon
+                    height="3vw"
+                    color="#fff"
+                    thickness="3"
+                    className="min-h-[40px]"
+                  />
                 </button>
-                <div
-                  style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
-                  className="text-white text-xl px-2"
-                >
-                  {displayIndex}/{itemLength}
-                </div>
+                <CarouselInfinite.Indicator
+                  className="text-[1.5vw]"
+                  styleType="numbers"
+                  activeColor="white"
+                />
                 <button
                   className="bg-[rgba(0,0,0,0.5)] rounded-full opacity-50 hover:opacity-100 duration-300 ease-in-out backdrop-blur-sm"
                   onClick={handleNext}
                   disabled={isTransitioning}
                 >
                   <ChevronIcon
-                    height="40px"
+                    height="3vw"
                     color="#fff"
                     thickness="3"
-                    className="rotate-180"
+                    className="rotate-180 min-h-[40px]"
                   />
                 </button>
-              </>
+              </div>
             )}
           </CarouselInfinite.Navigator>
         </CarouselInfinite>
@@ -219,7 +216,7 @@ const MainPage = () => {
               {(prev, next, leftStyle, rightStyle) => (
                 <>
                   <button
-                    className="bg-[rgba(255,255,255,0.5)] rounded-full opacity-0 group-hover:opacity-100 duration-300 ease-in-out b backdrop-blur-sm"
+                    className="bg-[rgba(255,255,255,0.5)] rounded-full opacity-0 group-hover:opacity-100 hover:cursor-pointer duration-300 ease-in-out b backdrop-blur-sm"
                     style={leftStyle}
                     onClick={prev}
                   >

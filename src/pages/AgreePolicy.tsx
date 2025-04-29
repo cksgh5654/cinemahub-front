@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import Tabs from '@ui/Tabs';
+import { Tabs } from "parkchanho-react-ui-kit";
+import { useEffect, useState } from "react";
 
 const AgreePolicy = () => {
   const [activeTab, setActiveTab] = useState(1);
@@ -17,8 +17,8 @@ const AgreePolicy = () => {
             index={1}
             className={`w-full flex-1 py-2 text-center border-b-2 transition cursor-pointer ${
               activeTab === 1
-                ? 'border-[#FF0000] text-[#FF0000] font-bold'
-                : 'border-gray-300'
+                ? "border-[#FF0000] text-[#FF0000] font-bold"
+                : "border-gray-300"
             }`}
           >
             이용약관
@@ -28,8 +28,8 @@ const AgreePolicy = () => {
             index={2}
             className={`w-full flex-1 py-2 text-center border-b-2 transition cursor-pointer ${
               activeTab === 2
-                ? 'border-[#FF0000] text-[#FF0000] font-bold'
-                : 'border-gray-300'
+                ? "border-[#FF0000] text-[#FF0000] font-bold"
+                : "border-gray-300"
             }`}
           >
             개인정보처리방침
