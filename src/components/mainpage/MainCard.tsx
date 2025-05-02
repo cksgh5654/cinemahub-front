@@ -180,7 +180,7 @@ const MainCard: FC<MovieProps> = ({
           onClick={() => {
             navigate(`?movie=${movieId}`), setIsMuted(true);
           }}
-          className="py-[1vw] text-[1.5vw] bg-red-500/80 rounded-[1vw] hover:bg-red-500 backdrop-blur-xs transition ease-in-out"
+          className="py-[1vw] text-[1.5vw] cursor-pointer bg-red-500/80 rounded-[1vw] hover:bg-red-500 backdrop-blur-xs transition ease-in-out"
         >
           자세히 보기
         </button>
