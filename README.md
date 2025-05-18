@@ -57,7 +57,7 @@
 - **Backend Repository**: [Cinemahub Backend](https://github.com/cksgh5654/cinemahub-back)
 - **Figma**: [Cinemahub Figma](https://www.figma.com/design/n5uMDvi0vZ69mcXVQHQJfw/%EC%98%81%ED%99%94?node-id=0-1&t=MzqjfrlrLNnCsE5i-1)
 - **WebSite**: [Cinemahub](https://cinemahub.chanhoportfolio.com)
-- **My Resume**: [My Resume](https://www.chanhoportfolio.com)
+- **My Resume**: [My Resume](https://www.chanhoportfolio.com/project/cinemahub)
 
 ## 📌 설치 및 실행 방법
 
